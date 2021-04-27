@@ -89,6 +89,11 @@
 #if XERCES_USE_NETACCESSOR_WINSOCK
 #	include <xercesc/util/NetAccessors/WinSock/WinSockNetAccessor.hpp>
 #endif
+// <Cadcorp>
+#if XERCES_USE_NETACCESSOR_WININET
+#	include <xercesc/util/NetAccessors/WinInet/WinInetNetAccessor.hpp>
+#endif
+// </Cadcorp>
 
 
 #include <xercesc/util/XMLMsgLoader.hpp>
@@ -424,6 +429,10 @@ XMLNetAccessor* XMLPlatformUtils::makeNetAccessor()
 		na = new MacOSURLAccessCF();
 #elif defined (XERCES_USE_NETACCESSOR_WINSOCK)
 		na = new WinSockNetAccessor();
+// <Cadcorp>
+#elif defined (XERCES_USE_NETACCESSOR_WININET)
+		na = new WinInetNetAccessor();
+// </Cadcorp>
 #endif
 
 	return na;
